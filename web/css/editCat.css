@@ -1,0 +1,14 @@
+.edit-cat {
+    margin-top: 100px;
+}
+
+.content-edit {
+    padding: 30px;
+}
+
+.content-edit  input[type=submit] {
+    margin-top: 10px;
+}
+.content-edit  input[type=text] {
+    font-size: 20px;
+}

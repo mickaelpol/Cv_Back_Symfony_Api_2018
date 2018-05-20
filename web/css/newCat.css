@@ -1,0 +1,23 @@
+.categorie > .panel {
+    margin-top: 100px;
+}
+
+.panel-back {
+    border-color: #00587A;
+}
+
+.panel-back>.panel-heading {
+    color: #ffffff;
+    background-color: #008891;
+    border-color: #00587A;
+}
+
+.btn-new {
+    color: #ffffff;
+    background-color: #008891;
+    border-color: #0F3057;
+}
+.btn-new:hover {
+    color: #ffffff;
+    transform: scale(1.05);
+}

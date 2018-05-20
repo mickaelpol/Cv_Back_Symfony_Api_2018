@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block container %}
+    <div class="container">
+        {% block body %}
+            <div class="row">
+                <div class="thumbnail">
+                    <h3 class="text-center page-header">
+                        {{cont.title}}
+                    </h3>
+                    {% if cont.brochure %}
+                    <div>
+                        <img src="{{ asset('uploads/images/content/' ~ cont.brochure) }}" alt="" class="img-responsive image center-block">
+                    </div>
+                    {% endif %} {% if cont.text %}
+                    <p class="text-center">
+                        {{cont.text}}
+                    </p>
+                    {% endif %}
+                    {% if cont.note != 0 %} {% set icon = '
+                    <i class="fa fa-star"></i>' %}
+                    <div class="text-center note">
+                        <strong>
+                            <div class="note-color">
+                                {{cont.note}}
+                            </div>
+                            {% for i in 1..cont.note %} {{ icon|raw }} {% endfor %}
+                        </strong>
+                    </div>
+                    {% endif %} {% if cont.dateStart and cont.dateEnd %}
+                    <ul class="list-inline text-center date-default">
+                        <li>
+                            {% if cont.dateStart %}
+                            <div>
+                                début
+                            </div>
+                            {{ cont.dateStart|date('d/m/Y') }} {% endif %}
+                        </li>
+                        <li>
+                            {% if cont.dateEnd %}
+                            <div>fin</div>
+                            {{ cont.dateEnd|date('d/m/Y') }} {% endif %}
+                        </li>
+                    </ul>
+                    {% endif %}
+                    <div class="text-center">
+                        {{ 'contenu.createdAt'|trans({}, 'FOSUserBundle')}}
+                        <span class="badge badge-info">{% if cont.createdAt %} {{cont.createdAt|date('d/m/Y')}} {% endif %}</span>
+                    </div>
+                </div>
+            </div>
+        {% endblock body %}
+    </div>
+{% endblock container %}

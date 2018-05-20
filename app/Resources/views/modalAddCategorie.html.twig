@@ -1,0 +1,40 @@
+<!-- Modal de création categorie -->
+<div id="modalCreate" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content thumbnail">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title text-center">
+                    Ajouter une catégorie
+                </h3>
+            </div>
+            <form action="{{ path('categorie_create') }}" method="POST">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="title-categorie col-lg-6 col-lg-offset-3">
+                            <label class="text-center" for="cat">Titre de la catégorie</label>
+                            <input autofocus name="newCategorie" id="cat" class="form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-lg-6">
+                        <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            {{ 'close'|trans({}, 'FOSUserBundle')}}
+                        </button>
+                    </div>
+                    <div class="col-lg-6">
+                        <button type="submit" class="btn btn-success btn-block">
+                            <span class="glyphicon glyphicon-check"></span>
+                            Créer
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

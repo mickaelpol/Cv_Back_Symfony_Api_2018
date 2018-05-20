@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/default.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+
+        {% include "navbar.html.twig" %}
+        
+        {% block container %}
+            {% block body %}{% endblock %}
+        {% endblock container %}
+            
+        {% include "modalAddCategorie.html.twig" %}
+        {% include "modalAddContent.html.twig" %}
+
+        {% include "modalContent.html.twig" %}
+
+        {% include "modalRemoveCategorie.html.twig" %}
+        {% include "modalRemoveContent.html.twig" %}
+
+
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+        <script src="{{ asset('js/bootstrap-datetimepicker.js') }}"></script>
+        <script src="{{ asset('js/bootstrap_dropdown_6.js') }}"></script>
+        <script src="{{ asset('node_modules/velocity-animate/velocity.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+        
+    </body>
+</html>

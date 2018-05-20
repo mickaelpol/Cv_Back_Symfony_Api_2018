@@ -1,0 +1,27 @@
+<!-- Modal de suppression contenu -->
+<div id="modalContentRemove" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content thumbnail">
+            <div class="modal-header bg-dangering">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title text-center">
+                    {{ 'app.removeContent'|trans({}, 'FOSUserBundle')}} ?
+                </h3>
+            </div>
+            <div class="modal-footer">
+                <div class="col-lg-6">
+                    <button type="button" class="btn btn-primary btn-block" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        {{ 'close'|trans({}, 'FOSUserBundle')}}
+                    </button>
+                </div>
+                <div class="col-lg-6">
+                    <span id="boutonSuppressionCont"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

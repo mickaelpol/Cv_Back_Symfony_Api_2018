@@ -1,0 +1,357 @@
+/*
+    1 iere couleur: #F4F7F7
+    2 em couleur: #AACFD0
+    3 em couleur: #79A8A9
+    4 em couleur: #1F4E5F
+ */
+
+/*
+    Paire de typographie
+    1 iere police : 
+*/
+@font-face {
+    font-family: 'Oswald';
+    src: url('oswald/Oswald-Bold.ttf')format('truetype'),
+        url('oswald/Oswald-Light.ttf')format('truetype'),
+        url('oswald/Oswald-Regular.ttf')format('truetype');
+}
+
+/* 
+    2 ieme police :
+ */
+@font-face {
+    font-family: 'Merry';
+    src: url('merriweather/Merriweather-Bold.ttf')format('truetype'),
+        url('merriweather/Merriweather-BoldItalic.ttf')format('truetype'),
+        url('merriweather/Merriweather-HeavyItalic.ttf')format('truetype'),
+        url('merriweather/Merriweather-Italic.ttf')format('truetype'),
+        url('merriweather/Merriweather-Light.ttf')format('truetype'),
+        url('merriweather/Merriweather-LightItalic.ttf')format('truetype'),
+        url('merriweather/Merriweather-Regular.ttf')format('truetype');
+}
+
+
+
+
+body {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    background-color: #F4F7F7;
+    font-family: 'Merry', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald',sans-serif;
+    font-weight: bold;
+    color: #1F4E5F;
+}
+
+a {
+    color:#79A8A9;
+    transition: transition 0.3s, color 0.8s; 
+}
+
+a:hover {
+    color: #F4F7F7;
+    text-decoration: none;
+}
+
+
+.card-info {
+    background-color: #1F4E5F;
+    color: #F4F7F7;
+}
+
+
+.navbar-inverse {
+    background-color: #1F4E5F;
+    border: none;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #AACFD0;
+    transition: transition 0.5s, background-color 0.5s;
+}
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus, 
+.navbar-inverse .navbar-nav>li>a:active,
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-inverse .navbar-nav>.open>a:focus
+{
+    color: #1F4E5F;
+    background-color:#F4F7F7;
+    border-bottom: 1px solid #1F4E5F;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a:focus {
+    background-color: #79A8A9;
+}
+
+.page-header {
+    border-color: #AACFD0;
+}
+
+.btn {
+    transition: transition 0.5s, background-color 0.5s, border-color 0.5s, transform 0.5s, box-shadow 0.5s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 5px 20px 0px rgba(50, 50, 50, 0.75);
+}
+
+
+.btn-edit {
+    color: #ffffff;
+    background-color: #FF9800;
+    border-color: rgb(197, 118, 0);
+}
+
+.btn-edit:focus,
+.btn-edit.focus {
+    color: #ffffff;
+    background-color: rgb(224, 136, 4);
+    border-color: rgb(197, 118, 0);
+}
+
+.btn-edit:hover {
+    color: #ffffff;
+    background-color: rgb(224, 136, 4);
+    border-color: rgb(197, 118, 0);
+}
+
+.alert-successing {
+    background-color: #4CAF50;
+    border-color: #d6e9c6;
+    color: #ffffff;
+    box-shadow: 0px 5px 20px 0px rgba(50, 50, 50, 0.75);
+}
+.alert-dangering {
+    background-color: #F44336;
+    border-color: rgb(223, 43, 30);
+    color: #ffffff;
+    box-shadow: 0px 5px 20px 0px rgba(50, 50, 50, 0.75);
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.thumbnail {
+    background-color: #1F4E5F;
+    color: #ffffff;
+    box-shadow: 0px 0px 60px -5px rgba(0, 0, 0, 0.82);
+}
+.fa {
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.fa-star {
+    color: gold;
+}
+
+.icon-plus {
+    width: 60px;
+}
+
+.btn-plus {
+    transition: transition 0.5s, transform 0.5s, box-shadow 0.5s;
+    border-radius: 50%;
+}
+
+.btn-plus:hover,
+.btn-plus:active,
+.btn-plus:focus {
+    transform: scale(1.2);
+    cursor: pointer;
+    box-shadow : 0px 0px 25px 0px rgba(50, 50, 50, 0.75);
+}
+
+.note-color {
+    font-size: 30px;
+    color: gold;
+}
+
+.titleCat>a {
+    color: #79A8A9;
+    transition: transition 0.3s, color 0.8s;
+}
+
+.titleCat>a:hover {
+    color: #0F3057;
+}
+
+.addCat {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.title-categorie {
+    margin-bottom: 30px;
+}
+
+.title-categorie > input {
+    margin-top: 10px;
+}
+
+.titre-content {
+    margin-bottom: 30px;
+}
+.titre-content > input {
+    margin-top: 10px;
+}
+
+.image-content {
+    margin-bottom: 30px;
+}
+.image-content > input {
+    margin-top: 10px;
+}
+
+.description-content {
+    margin-bottom: 30px;
+}
+.description-content > textarea {
+    margin-top: 10px;
+}
+
+.note {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.note > input {
+    margin-top: 20px;
+}
+
+.date-default {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.date-start {
+    margin-bottom: 30px;
+}
+.date-start > input {
+    margin-top: 10px;
+}
+.date-end {
+    margin-bottom: 30px;
+}
+.date-end > input {
+    margin-top: 10px;
+}
+.categorie-content {
+    margin-bottom: 30px;
+}
+.categorie-content > .form-group {
+    margin-top: 10px;
+}
+
+#idNote {
+    font-size: 20px;
+}
+#idNote > .fa {
+    color: gold;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: gold;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #1F4E5F;
+    cursor: pointer;
+}
+
+.bg-dangering {
+    background-color: #F44336;
+}
+
+.bg-dangering > h1,h2,h3,h4,h5,h6 {
+    color: #ffffff;
+}
+
+.image {
+    width: auto;
+    height: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 50px;
+}
+.content {
+    position: relative;
+    width: 50%;
+    margin-bottom: 60px;
+}
+
+.image-edit {
+    opacity: 1;
+    display: block;
+    width: auto;
+    height: 200px;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+.image-edit:hover {
+    cursor: pointer;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+.image-edit:hover {
+    opacity: 0.3;
+}
+
+.content:hover .middle {
+    opacity: 1;
+}
+
+
+.idContent .fa {
+    font-size: 20px;
+}
+
+.badge {
+    font-size: 18px;
+}
+
+.badge-info {
+    background-color: #03A9F4;
+}

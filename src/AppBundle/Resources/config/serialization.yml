@@ -1,0 +1,59 @@
+# AppBundle\Entity\Competence:
+#     attributes:
+#         id:
+#             groups: ['competence', 'categorie']
+#         language:
+#             groups: ['competence', 'categorie']
+#         note:
+#             groups: ['competence', 'categorie']
+#         categorie:
+#             groups: ['competence']
+
+# AppBundle\Entity\Diplome:
+#     attributes:
+#         id:
+#             groups: ['diplome', 'categorie']
+#         title:
+#             groups: ['diplome', 'categorie']
+#         annee:
+#             groups: ['diplome', 'categorie']
+#         categorie:
+#             groups: ['diplome']
+
+# AppBundle\Entity\Loisir:
+#     attributes:
+#         id:
+#             groups: ['loisir', 'categorie']
+#         name:
+#             groups: ['loisir', 'categorie']
+#         categorie:
+#             groups: ['loisir']
+
+# AppBundle\Entity\Content:
+#     attributes:
+#         id:
+#             groups: ['content', 'categorie']
+#         title:
+#             groups: ['content', 'categorie']
+#         brochure:
+#             groups: ['content', 'categorie']
+#         text:
+#             groups: ['content', 'categorie']
+#         dateStart:
+#             groups: ['content', 'categorie']
+#         dateEnd:
+#             groups: ['content', 'categorie']
+#         note:
+#             groups: ['content', 'categorie']
+#         categorie:
+#             groups: ['content']
+
+
+# AppBundle\Entity\Categorie:
+#     attributes:
+#         id:
+#             groups: ['content', 'categorie']
+#         title:
+#             groups: ['content', 'categorie']
+#         contents:
+#             groups: ['categorie']

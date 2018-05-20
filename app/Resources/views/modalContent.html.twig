@@ -1,0 +1,34 @@
+<!-- Modal de visualisation du contenu -->
+<div id="modalContentVue" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content thumbnail">
+            <div class="modal-body">
+                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">&times;</button>
+                <h3 id="modalTitle" class="text-center page-header"></h3>
+                <div>
+                    <img id="modalImg" src="" alt="" class="img-responsive image center-block">
+                </div>
+                <p id="modalPara" class="text-center"></p>
+                <div id="modalNote" class="text-center note"></div>
+                <ul class="list-inline text-center date-default">
+                    <li>
+                        <div>
+                            début
+                        </div>
+                        <div id="modalDebut"></div>
+                    </li>
+                    <li>
+                        <div>fin</div>
+                        <div id="modalFin"></div>
+                    </li>
+                </ul>
+                <div class="text-center">
+                    Créer le
+                    <span id="modalCreated" class="badge badge-info"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

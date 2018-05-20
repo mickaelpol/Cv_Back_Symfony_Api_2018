@@ -1,0 +1,10 @@
+vich_uploader: 
+    db_driver: orm 
+    mappings: 
+        affiche_images:
+            uri_prefix:         '%app.path.content_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/Content'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true

@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+{% block container %}
+    <div class="container-fluid">
+
+
+{% block body %}
+
+    <div class="row">
+        {% for label, flashes in app.session.flashbag.all %} {% for flash in flashes %}
+        <div class="col-lg-12 col-xs-12" id="message" data-type="{{ label }}" data-flash="{{ flash }}"></div>
+        {% endfor %} {% endfor %}
+    </div>
+
+
+    <div class="row page-header">
+        <h1 class="text-center">
+            {{ 'index.title'|trans({}, 'FOSUserBundle')}}
+        </h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+        <div class="row addCat">
+            <div class="col-lg-3">
+                <span id="createCat">
+                    <img class="icon-plus btn-plus" src="{{ asset('img/plus.svg') }}" alt="oouton creation de categorie">
+                </span>
+                <span>
+                    {{ 'titlecat.nav.add'|trans({}, 'FOSUserBundle')}}
+                </span>
+            </div>
+            <div class="col-lg-3">
+                <span id="createCont">
+                    <img class="icon-plus btn-plus" src="{{ asset('img/plus.svg') }}" alt="bouton creation de contenu">
+                </span>
+                <span>
+                    {{ 'titlecat.add.content'|trans({}, 'FOSUserBundle')}}
+                </span>
+            </div>
+        </div>
+        {% for c in categories %}
+            {% if loop.index % 2 == 0 %}
+                <div class="col-lg-5 col-lg-offset-2 thumbnail">
+            {% else %}
+                <div class="row">
+                <div class="col-lg-5 thumbnail">
+            {% endif %}
+                
+                    <h2 class="page-header text-center text-uppercase" id="transDelete" data-delete="{{ 'delete'|trans({}, 'FOSUserBundle')}}">
+                        <a href="{{ path('categorie_edit', {'id': c.id}) }}">
+                            {{c.title}}
+                        </a>
+                        <span data-cat="{{ path('categorie_remove', {'id': c.id}) }}" class="fa fa-close idCategorie btn btn-danger"></span>
+                    </h2>
+                    {% for cont in c.contents %}
+                        {% if loop.index % 2 == 0 %}
+                            <div class="col-lg-5 col-lg-offset-2">
+                        {% else %}
+                            <div class="col-lg-5">
+                        {% endif %}
+                            
+                            <h3 class="text-center page-header">
+                                {{cont.title}}
+                            </h3>
+                            {% set image = asset('uploads/images/content/') ~ cont.brochure %}
+                            {% if cont.brochure %}
+                                <div>
+                                    <img src="{{ image }}" alt="" class="img-responsive image center-block">
+                                </div>
+                            {% endif %}
+                            {% if cont.text %}
+                                <p class="text-center">
+                                    {{cont.text|truncate(40, true, ' ...')}}
+                                </p>
+                            {% endif %}
+                            <div class="text-center">
+                                <a data-contenu='{"title":"{{ cont.title }}", "description":"{{ cont.text }}", "image":"{{ image }}", "note":"{{ cont.note }}", "dateStart":"{{ cont.dateStart|date('d/m/Y') }}", "dateEnd":"{{ cont.dateEnd|date('d/m/Y') }}", "createdAt":"{{ cont.createdAt|date('d/m/Y') }}"}' class="btn btn-info btn-md modalVue">Voir plus</a>
+                            </div>
+                            {% if cont.note != 0 %}
+                                {% set icon = '<i class="fa fa-star"></i>' %}
+                                <div class="text-center note">
+                                    <strong>
+                                        <div class="note-color">
+                                                {{cont.note}}
+                                        </div>
+                                            {% for i in 1..cont.note %}
+                                                {{ icon|raw }}
+                                            {% endfor %}
+                                    </strong>
+                                </div>
+                            {% endif %}
+                            {% if cont.dateStart and cont.dateEnd or cont.dateStart or cont.dateEnd %}
+                                <ul class="list-inline text-center date-default">
+                                    <li>
+                                        {% if cont.dateStart %}
+                                            <div>
+                                                début
+                                            </div>
+                                            {{ cont.dateStart|date('d/m/Y') }}
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if cont.dateEnd %}
+                                            <div>fin</div>
+                                            {{ cont.dateEnd|date('d/m/Y') }}
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                            {% endif %}
+                            <div class="text-center">
+                                {{ 'contenu.createdAt'|trans({}, 'FOSUserBundle')}}
+                                <span class="badge badge-info">{% if cont.createdAt %} {{cont.createdAt|date('d/m/Y')}} {% endif %}</span>
+                            </div><br>
+                            <div class="col-lg-6">
+                                <a title="{{ 'edit'|trans({}, 'FOSUserBundle')}}" href="{{ path('content_edit', {'id': cont.id}) }}" class="btn btn-block btn-edit" type="button">
+                                    <i class="fa fa-cog"></i>
+                                </a>
+                            </div>
+                            <div class="col-lg-6">
+                                <a title="{{ 'delete'|trans({}, 'FOSUserBundle')}}" id="transDeleteCont" data-idcont="{{ path('content_remove', {'id': cont.id }) }}" data-delete="{{ 'delete'|trans({}, 'FOSUserBundle')}}"
+                                    class="btn btn-danger btn-block idContent">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                    {% endfor %}
+
+                {% if loop.index % 2 == 0 %}
+                    </div>
+                    </div>
+                {% else %}
+                    </div>
+                {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
+    </div>
+{% endblock container %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/indexCategorie.js') }}"></script>
+{% endblock javascripts %}

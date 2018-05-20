@@ -1,0 +1,215 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<style>
+    .text-black {
+        color: #000000;
+    }
+
+    #myVideo {
+    width: 100%;
+    /* Could also use width: 100%; */
+    height: 47em;
+    object-fit: cover;
+    position: absolute;
+    /* Change position to absolute if you don't want it to take up the whole page */
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    }
+
+
+    #footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: auto;
+}
+</style>
+
+{# <video autoplay loop id="bgvid">
+    <source src="{{ asset('img/monde.mp4') }}" type="video/mp4">
+</video> #}
+
+<video autoplay muted loop id="myVideo">
+    <source src="{{ asset('img/monde.mp4') }}" type="video/mp4">
+</video>
+
+<div class="container">
+    <div class="row">
+        <div style="margin-top:60px;" class="row thumbnail">
+            <h1 class="page-header text-center text-white">
+                Bienvenue sur votre Curriculum vitae en ligne
+            </h1>
+        </div>
+        <div class="row">
+            <div class="text-center">
+                <a class="btn btn-success text-uppercase" id="modalLogin" >Se connecter</a>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+{# <div id="footer" class="thumbnail container-fluid">
+    <div class="row">
+        <h3 class="text-center">About Us:</h3>
+        <br>
+        <div class="col-md-4">
+            <center>
+                <img src="http://oi60.tinypic.com/w8lycl.jpg" class="img-circle" alt="the-brains">
+                <br>
+                <h4 class="footertext">Programmer</h4>
+                <p class="footertext">You can thank all the crazy programming here to this guy.
+                    <br>
+            </center>
+        </div>
+        <div class="col-md-4">
+            <center>
+                <img src="http://oi60.tinypic.com/2z7enpc.jpg" class="img-circle" alt="...">
+                <br>
+                <h4 class="footertext">Artist</h4>
+                <p class="footertext">All the images here are hand drawn by this man.
+                    <br>
+            </center>
+        </div>
+        <div class="col-md-4">
+            <center>
+                <img src="http://oi61.tinypic.com/307n6ux.jpg" class="img-circle" alt="...">
+                <br>
+                <h4 class="footertext">Designer</h4>
+                <p class="footertext">This pretty site and the copy it holds are all thanks to this guy.
+                    <br>
+            </center>
+        </div>
+    </div>
+    <div class="row">
+        <p>
+            <center>
+                <a href="#">Contact Stuff Here</a>
+                <p class="footertext">Copyright 2014</p>
+            </center>
+        </p>
+    </div>
+</div> #}
+
+<div id="footer" class="container-fluid thumbnail">
+    <div class="row">
+        <h3 class="text-center">About Us:</h3>
+        <br>
+        <div class="col-md-4">
+            <center>
+                <img src="http://oi60.tinypic.com/w8lycl.jpg" class="img-circle" alt="the-brains">
+                <br>
+                <h4 class="footertext">Programmer</h4>
+                <p class="footertext">You can thank all the crazy programming here to this guy.
+                <br>
+            </center>
+        </div>
+        <div class="col-md-4">
+            <center>
+                <img src="http://oi60.tinypic.com/2z7enpc.jpg" class="img-circle" alt="...">
+                <br>
+                <h4 class="footertext">Artist</h4>
+                <p class="footertext">All the images here are hand drawn by this man.
+                <br>
+            </center>
+        </div>
+        <div class="col-md-4">
+            <center>
+                <img src="http://oi61.tinypic.com/307n6ux.jpg" class="img-circle" alt="...">
+                <br>
+                <h4 class="footertext">Designer</h4>
+                <p class="footertext">This pretty site and the copy it holds are all thanks to this guy.
+                <br>
+            </center>
+        </div>
+    </div>
+    <div class="row">
+        <p>
+            <center>
+                <a href="#">Contact Stuff Here</a>
+                <p class="footertext">Copyright 2014</p>
+            </center>
+        </p>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-id">
+    <div class="modal-dialog">
+        <div class="modal-content thumbnail">
+            <div class="modal-header">
+                <button type="button" class="pull-right btn btn-danger" data-dismiss="modal" aria-hidden="true">
+                    <i class="fa fa-remove"></i>
+                </button>
+                <h4 class="modal-title text-center text-uppercase">Connexion</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{ path('fos_user_security_check') }}" method="post">
+                    {# {% if csrf_token %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" /> {% endif %}
+
+                    <label for="password">{{ 'security.login.username'|trans }}</label>
+                    <input class="text-black form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username"
+                    />
+
+                    <label for="password">{{ 'security.login.password'|trans }}</label>
+                    <input class="text-black form-control" type="password" id="password" name="_password" required="required" autocomplete="current-password" />
+
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label> #}
+                    {% if csrf_token %}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" /> 
+                    {% endif %}
+                    
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        <input class="text-black form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" placeholder="{{ 'security.login.username'|trans }}"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                        <input class="text-black form-control" type="password" id="password" name="_password" required="required" autocomplete="current-password" placeholder="{{ 'security.login.password'|trans }}"/>
+                    </div>
+                    <div class="input-group">
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                {# <div class="col-lg-6">
+                    <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Close</button>
+                </div> #}
+                <div class="col-lg-12">
+                    <input class="btn btn-success  btn-block" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+    {% trans_default_domain 'FOSUserBundle' %}
+    
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script>
+        $('#modalLogin').on('click', function(){
+
+            $('#modal-id').modal('show');
+        })
+    </script>
+{% endblock javascripts %}
+    
+    

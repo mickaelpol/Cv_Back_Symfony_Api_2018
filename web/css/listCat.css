@@ -1,0 +1,22 @@
+.icon-plus {
+    width: 60px;
+}
+
+.btn-plus {
+    transition: transition 0.5s, transform 0.5s;
+}
+
+.btn-plus:hover,
+.btn-plus:active,
+.btn-plus:focus {
+    transform: scale(1.2);
+}
+
+.titleCat > a {
+    color:#79A8A9;
+    transition: transition 0.3s,
+    color 0.8s;
+}
+.titleCat > a:hover {
+    color:#0F3057;
+}

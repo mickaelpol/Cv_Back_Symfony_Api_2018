@@ -1,0 +1,14 @@
+app_content:
+    resource: "@AppBundle/Controller/ContentController.php"
+    type:     annotation
+
+app:
+    resource: '@AppBundle/Controller/BaseController'
+    type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+api:
+    type: rest
+    resource: AppBundle\Controller\ApiController\ApiController

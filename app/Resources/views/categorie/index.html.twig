@@ -1,0 +1,9 @@
+<div class="form-group">
+    <select form="content" name="categorie" class="form-control" id="cat">
+        {% for cat in categories %}
+            <option value="{{ cat.id|number_format }}">{{ cat.title }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+

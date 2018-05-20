@@ -1,0 +1,119 @@
+{% block stylesheets %}
+ {{ form_stylesheet(form) }}
+{% endblock stylesheets %}
+
+{% block body %}
+
+    <div class="modal-body">
+        <div class="row">
+            {{form_start(form, {'action': path('content_new'), 'method': 'POST'})}}
+        
+    
+            <div class="col-lg-6">
+                <div class="titre-content">
+                    {{form_label(form.title, 'Titre du contenu', {'id': 'title'})}}
+                    {{form_widget(form.title, {'id': 'title', 'attr': {'class': 'form-control'}} )}}
+                </div>
+                
+                <div class="image-content">
+                    {{form_label(form.brochure, 'Image ou Icone du contenu', {'id': 'image'})}}
+                    {{form_widget(form.brochure, {'id': 'image', 'attr': {'class': 'hidden'}})}}
+                    <div id="emplacementImage">
+                        <button type="button" id="fakeBtn" class="btn btn-info">
+                            Ajouter une image ou icone
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="description-content">
+                    {{form_label(form.text, 'Description du contenu', {'id': 'text'})}}
+                    {{form_widget(form.text, {'id': 'text' ,'attr': {'class': 'form-control'}})}}
+                </div>
+                
+                <div class="note">
+                    <label class="text-center" for="note">Note du contenu :
+                        <span id="idNote"></span>
+                    </label>
+                    {{form_widget(form.note, {'id': 'note', 'attr': {'class': 'form-control slider'}})}}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="date-start">
+                    <div class="form-group">
+                        {{form_label(form.dateStart, 'Date de début', {'id': 'dateStart'} )}}
+                        <div class='input-group date' id='dateStart'>
+                        {{form_widget(form.dateStart, {'attr': {'class': 'form-control'}})}}
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="date-end">
+                    <div class="form-group">
+                        {{form_label(form.dateEnd, 'Date de fin', {'id': 'dateEnd'} )}}
+                        <div class='input-group date' id='dateEnd'>
+                            {{form_widget(form.dateEnd, {'attr': {'class': 'form-control'}})}}
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="categorie-content">
+                    <label class="text-center" for="categorie">Catégorie du contenu</label>
+                    {{form_widget(form.categorie, {'attr': {'class': 'form-control'}})}}
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-lg-6">
+            <button type="button" class="btn btn-warning btn-block" data-dismiss="modal">
+                <span class="glyphicon glyphicon-remove"></span>
+                {{ 'close'|trans({}, 'FOSUserBundle')}}
+            </button>
+        </div>
+        <div class="col-lg-6">
+            <button type="submit" class="btn btn-success btn-block">
+                <span class="glyphicon glyphicon-check"></span>
+                Créer
+            </button>
+        </div>
+        {{form_end(form)}}
+    </div>
+
+{% endblock body %}
+
+{% block javascripts %}
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+
+<script src="{{ asset('js/bootstrap.js') }}">
+</script>
+<script src="{{ asset('js/bootstrap-datetimepicker.js') }}"></script>
+    {{ form_javascript(form) }}
+    <script>
+        $('#dateStart').datetimepicker({
+                language: 'fr',
+                weekStart: 0,
+                format: 'dd/mm/yyyy',
+                startView: 'year',
+                autoclose: true,
+                todayBtn: true,
+                minView: "month",
+                maxView: "decade"
+            });
+            $('#dateEnd').datetimepicker({
+                language: 'fr',
+                weekStart: 0,
+                format: 'dd/mm/yyyy',
+                startView: 'year',
+                autoclose: true,
+                todayBtn: true,
+                minView: "month",
+                maxView: "decade"
+            });
+    </script>
+{% endblock javascripts %}
