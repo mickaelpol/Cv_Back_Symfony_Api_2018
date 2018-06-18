@@ -53,7 +53,7 @@ class ContentController extends Controller
                 $em->flush();
                 $this->addFlash(
                     'successing',
-                    'Le contenu à bien été ajouter'
+                    'Le contenu à bien été ajouté'
                 );
             } elseif (!$product->getBrochure()) {
                 $em = $this->getDoctrine()->getMAnager();
@@ -61,7 +61,7 @@ class ContentController extends Controller
                 $em->flush();
                 $this->addFlash(
                     'successing',
-                    'Le contenu à bien été ajouter'
+                    'Le contenu à bien été ajouté'
                 );
             } else {
                 $this->addFlash(
@@ -110,7 +110,7 @@ class ContentController extends Controller
             $em->flush();
             $this->addFlash(
                 'successing',
-                'Le contenu à bien été supprimer'
+                'Le contenu à bien été supprimé'
             );
 
         } elseif (!$image) {
@@ -118,7 +118,7 @@ class ContentController extends Controller
             $em->flush();
             $this->addFlash(
                 'successing',
-                "Le contenu à bien été supprimer"
+                "Le contenu à bien été supprimé"
             );
         } else {
             $this->addFlash(

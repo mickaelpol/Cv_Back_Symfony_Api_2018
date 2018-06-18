@@ -10,7 +10,7 @@
                     Ajouter une catégorie
                 </h3>
             </div>
-            <form action="{{ path('categorie_create') }}" method="POST">
+            <form id="formCat" action="{{ path('categorie_create') }}" method="POST">
                 <div class="modal-body">
                     <div class="row">
                         <div class="title-categorie col-lg-6 col-lg-offset-3">
@@ -27,7 +27,7 @@
                         </button>
                     </div>
                     <div class="col-lg-6">
-                        <button type="submit" class="btn btn-success btn-block">
+                        <button id="createCat" type="submit" class="btn btn-success btn-block">
                             <span class="glyphicon glyphicon-check"></span>
                             Créer
                         </button>
@@ -38,3 +38,5 @@
 
     </div>
 </div>
+
+<script src="{{ asset('js/add_categorie.js') }}"></script>

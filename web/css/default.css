@@ -355,3 +355,11 @@ a:hover {
 .badge-info {
     background-color: #03A9F4;
 }
+
+.fa-warning {
+    color : #AB4442;
+}
+
+.fa-check {
+    color : #4CAF5A;
+}

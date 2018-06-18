@@ -15,6 +15,7 @@ use Proxies\__CG__\AppBundle\Entity\Categorie;
  */
 class DefaultController extends Controller
 {
+    
     /**
      * @Route("/", name="homepage")
      */
@@ -35,6 +36,47 @@ class DefaultController extends Controller
      */
     public function categorieAction(Request $request)
     {
+
+        /**
+         * Si la requête est une requête Ajax
+         */
+        if($request->isXmlHttpRequest()){
+            /**
+             * Si la valeur dans l'input est vide j'encode un message d'erreur en json
+             * je renvoi un header de type Json
+             * et un code d'erreur 400
+             */
+            if (empty($request->get('newCategorie'))) {
+                echo json_encode(['error' => " <span class='fa fa-warning'></span> Vous n'avez pas saisie de texte"]);
+                header('Content-Type: application/json');
+                http_response_code(400);
+                die();
+            /**
+             * Sinon si la valeur dans l'input est renseigné 
+             * J'encode la valeur du champ en Json
+             * Je renvoi un header de type json aussi et un code de type 200 pour dire que tout c'est bien passé 
+             */
+            } else {
+                $categorie = $request->get('newCategorie');
+                $route = "/";
+                $validation = $this->addFlash(
+                    'successing',
+                    'La catégorie à bien été ajouter'
+                );
+                echo json_encode([$validation, "valid" => "<span class='fa fa-check'></span> Enregistrement redirection en cours"]);
+                header('Content-Type: application/json');
+                http_response_code(200);
+                $categorie = $request->get('newCategorie');
+                $object = new Categorie();
+                $object->setTitle($categorie);
+                
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($object);
+                $em->flush();
+                die();
+            }
+        }
+            
 
         $categorie = $request->get('newCategorie');
         $object = new Categorie();
