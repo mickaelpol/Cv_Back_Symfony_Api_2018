@@ -58,7 +58,6 @@ class DefaultController extends Controller
              */
             } else {
                 $categorie = $request->get('newCategorie');
-                $route = "/";
                 $validation = $this->addFlash(
                     'successing',
                     'La catégorie à bien été ajouter'
