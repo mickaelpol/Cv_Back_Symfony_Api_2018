@@ -12,6 +12,7 @@ use SC\DatetimepickerBundle\Form\Type\DatetimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ContentType extends AbstractType
 {
@@ -40,7 +41,8 @@ class ContentType extends AbstractType
                     'attr' => array(
                         'min' => 0,
                         'max' => 10,
-                        'step' => 1
+                        'step' => 1,
+                        'value' => 0
                     )
                 ))
                 ->add('dateStart', DateTimeType::class, array(
@@ -85,7 +87,9 @@ class ContentType extends AbstractType
                     "readonly" => "readonly"
                 ),
             ))
-                ->add('categorie');
+                ->add('categorie', null, array(
+                    'required' => true
+                ));
 
     }/**
      * {@inheritdoc}

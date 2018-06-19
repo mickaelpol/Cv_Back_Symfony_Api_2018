@@ -64,8 +64,8 @@ $(function(){
 
         btnModalVue.on('click', function(){
             var title = JSON.parse($(this).attr("data-contenu")).title;
-            var image = JSON.parse($(this).attr("data-contenu")).image;
             var description = JSON.parse($(this).attr("data-contenu")).description;
+            var image = JSON.parse($(this).attr("data-contenu")).image;
             var note = JSON.parse($(this).attr("data-contenu")).note;
             var debut = JSON.parse($(this).attr("data-contenu")).dateStart;
             var fin = JSON.parse($(this).attr("data-contenu")).dateEnd;

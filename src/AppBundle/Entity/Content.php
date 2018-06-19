@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Content
@@ -24,7 +25,7 @@ class Content
 
     /**
      * @var string
-     *
+    *  @Assert\NotBlank()
      * @ORM\Column(name="con_title", type="string", length=255)
      */
     private $title;

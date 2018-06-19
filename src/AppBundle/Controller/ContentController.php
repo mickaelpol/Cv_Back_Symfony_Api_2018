@@ -26,13 +26,82 @@ class ContentController extends Controller
      */
     public function newAction(Request $request)
     {
-
+        
         $product = new Content();
         $form = $this->createForm(ContentType::class, $product);
         $form->handleRequest($request);
+        
+        
+        /**
+         * Traitement Ajax
+         */
+        if($request->isXmlHttpRequest()){
+            if ($form->isValid()) {
+                $data = $form->getData();
 
+                if($product->getBrochure()){
+
+                    // ==== Traitement ici ===== \\
+                    /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                    $file = $product->getBrochure();
+                    $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
+
+                    $file->move(
+                        $this->getParameter('image_directory'),
+                        $fileName
+                    );
+
+                    $product->setBrochure($fileName);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($product);
+                    $em->flush();
+                    
+                    // ==== Fin de traitement ici ===== \\
+
+                    $validation = $this->addFlash(
+                        'successing',
+                        'Le contenu à bien été ajouté'
+                    );
+                    echo json_encode([$validation, "valid" => "<span class='fa fa-check'></span> Enregistrement redirection en cours"]);
+                    header('Content-Type: application/json');
+                    http_response_code(200);
+                    die();
+
+                }elseif(!$product->getBrochure()) {
+
+                    // ==== Traitement ici ===== \\
+                    $em = $this->getDoctrine()->getMAnager();
+                    $em->persist($product);
+                    $em->flush();
+                    // ==== Fin de traitement ici ===== \\
+
+                    $validation = $this->addFlash(
+                        'successing',
+                        'Le contenu à bien été ajouté'
+                    );
+                    echo json_encode([$validation, "valid" => "<span class='fa fa-check'></span> Enregistrement redirection en cours"]);
+                    header('Content-Type: application/json');
+                    http_response_code(200);
+                    die();
+
+                } else {
+                    $error = ['error' => 'Une erreur est survenue'];
+                    echo json_encode($error);
+                    header('Content-Type: application/json');
+                    http_response_code(400);
+                    die();
+                }
+            }
+        }
+
+
+        /**
+         * Traitement PHP
+         */
         if ($form->isSubmitted() && $form->isValid()) {
             // $file stores the uploaded PDF file
+            
 
             if ($product->getBrochure()) {
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */

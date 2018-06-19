@@ -1,16 +1,16 @@
-var form = document.querySelector('#formCat');
-var action= form.getAttribute('action');
+var form1 = document.querySelector('#formCat');
+var action1= form1.getAttribute('action');
 var btn = document.querySelector('button[type=submit]');
 var btnText = btn.textContent;
 
 
-form.addEventListener('submit', function(e){
+form1.addEventListener('submit', function(e){
     e.preventDefault();
 
     btn.disabled = true;
     btn.textContent = "Chargement...";
 
-    var errorElements = form.querySelectorAll('.has-error');
+    var errorElements = form1.querySelectorAll('.has-error');
 
     for(var i = 0; i < errorElements.length; i++){
         var div = errorElements[i].querySelector('.alert')
@@ -27,7 +27,7 @@ form.addEventListener('submit', function(e){
         partie récupération des datas du formulaire
         et déclaration de l'xmlhttprequest
      */
-    var data = new FormData(form);
+    var data = new FormData(form1);
     var xhr = new XMLHttpRequest();
 
 
@@ -63,7 +63,7 @@ form.addEventListener('submit', function(e){
     /**
     Ouverture de la requete ajax avec le type de requete et l'action du formulaire
      */
-    xhr.open("POST", action, true);
+    xhr.open("POST", action1, true);
     /**
     Passage de l'entête "xmlhttprequest" pour les requêtes ajax
      */
