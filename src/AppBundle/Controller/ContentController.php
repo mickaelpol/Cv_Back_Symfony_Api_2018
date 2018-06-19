@@ -36,6 +36,7 @@ class ContentController extends Controller
          * Traitement Ajax
          */
         if($request->isXmlHttpRequest()){
+            sleep(2);
             if ($form->isValid()) {
                 $data = $form->getData();
 

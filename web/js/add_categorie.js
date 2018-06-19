@@ -1,14 +1,14 @@
 var form1 = document.querySelector('#formCat');
 var action1= form1.getAttribute('action');
-var btn = document.querySelector('button[type=submit]');
-var btnText = btn.textContent;
+var btn1 = document.querySelector('button[type=submit]');
+var btn1Text = btn1.textContent;
 
 
 form1.addEventListener('submit', function(e){
     e.preventDefault();
 
-    btn.disabled = true;
-    btn.textContent = "Chargement...";
+    btn1.disabled = true;
+    btn1.textContent = "Chargement...";
 
     var errorElements = form1.querySelectorAll('.has-error');
 
@@ -55,8 +55,8 @@ form1.addEventListener('submit', function(e){
                     document.location.reload(true);
                 }, 3000);
             }
-        btn.disabled = false;
-        btn.textContent = btnText;
+        btn1.disabled = false;
+        btn1.textContent = btn1Text;
         }
     }
 

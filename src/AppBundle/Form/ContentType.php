@@ -23,7 +23,7 @@ class ContentType extends AbstractType
     {
         $builder->add('title', TextType::class, array(
                     'attr' => array(
-                        'autofocus' => true
+                        'autofocus' => true,
                     )
                 ))
                 ->add('brochure',FileType::class, array(
