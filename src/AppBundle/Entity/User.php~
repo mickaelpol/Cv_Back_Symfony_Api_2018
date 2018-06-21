@@ -22,6 +22,42 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="use_lastname", type="string", length=255, nullable=false)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="use_adress", type="string", length=255, nullable=true)
+     */
+    private $adress;
+
+    /**
+     * @var int
+     * 
+     * @ORM\Column(name="use_phone", type="integer", nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @var int
+     * 
+     * @ORM\Column(name="use_age", type="integer", nullable=true)
+     */
+    private $age;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="use_permis", type="boolean", nullable=true)
+     */
+    private $permis;
+
+
+
 
     /**
      * Get id

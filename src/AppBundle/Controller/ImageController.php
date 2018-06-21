@@ -25,24 +25,6 @@ class ImageController extends Controller
         
         $form = $this->createForm(ImageType::class);
         $form->handleRequest($request);
-
-        // $file = $product->getBrochure();
-
-        // $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
-
-        //     // Move the file to the directory where brochures are stored
-        // $file->move(
-        //     $this->getParameter('brochures_directory'),
-        //     $fileName
-        // );
-
-        //     // Update the 'brochure' property to store the PDF file name
-        //     // instead of its contents
-        // $product->setBrochure($fileName);
-
-        // dump($product);
-        // die();
-        
         return $this->render('content/image.html.twig', array(
             'form' => $form->createView(),
         ));
