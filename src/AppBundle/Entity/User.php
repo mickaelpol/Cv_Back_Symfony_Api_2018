@@ -37,9 +37,23 @@ class User extends BaseUser
     private $adress;
 
     /**
-     * @var int
+     * @var string
      * 
-     * @ORM\Column(name="use_phone", type="integer", nullable=true)
+     * @ORM\Column(name="use_city", type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="use_country", type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="use_phone", type="string", length=10, nullable=true)
      */
     private $phone;
 
@@ -56,6 +70,129 @@ class User extends BaseUser
      */
     private $permis;
 
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="use_job", type="string", length=255, nullable=true)
+     */
+    private $job;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_facebook", type="string", length=255, nullable=true, unique=true)
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_linkedin", type="string", length=255, nullable=true, unique=true)
+     */
+    private $linkedin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_instagram", type="string", length=255, nullable=true, unique=true)
+     */
+    private $instagram;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_twitter", type="string", length=255, nullable=true, unique=true)
+     */
+    private $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_pinterest", type="string", length=255, nullable=true, unique=true)
+     */
+    private $pinterest;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_youtube", type="string", length=255, nullable=true, unique=true)
+     */
+    private $youtube;
+
+
+    /**
+     * Get the string of user in youtube
+     *
+     * @return string
+     */
+    public function getUserYoutube()
+    {
+        if ($this->getYoutube()) {
+            $lien = explode('/user/', $this->getYoutube());
+            return $lien[1];
+        }
+    }
+
+    /**
+     * Get the string of user in linkedin
+     *
+     * @return string
+     */
+    public function getUserLinkedin()
+    {
+        if ($this->getLinkedin()) {
+            $link = explode('in/', $this->getLinkedin());
+            return $link[1];
+        }
+    }
+
+    /**
+     * Get the string of user in Facebook
+     *
+     * @return string
+     */
+    public function getUserFacebook()
+    {
+        if ($this->getFacebook()) {
+            $link = explode("https://www.facebook.com/", $this->getFacebook());
+            return $link[1];
+        }
+    }
+
+    /**
+     * Get the string of user in instagram
+     *
+     * @return string
+     */
+    public function getUserInstagram()
+    {
+        if ($this->getInstagram()) {
+            $link = explode('/', $this->getInstagram());
+            return $link[3];
+        }
+    }
+
+
+    /**
+     * Get the string of user in twitter
+     *
+     * @return string
+     */
+    public function getUserTwitter()
+    {
+        if ($this->getTwitter()) {
+            $link = explode("/", $this->getTwitter());
+            return $link[3];
+        }
+    }
+
+    public function getUserPinterest()
+    {
+        if($this->getPinterest()){
+            $link = explode('/', $this->getPinterest());
+            return $link[3];
+        }
+    }
 
 
 
@@ -187,5 +324,221 @@ class User extends BaseUser
     public function getPermis()
     {
         return $this->permis;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return User
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     *
+     * @return User
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     *
+     * @return User
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set linkedin
+     *
+     * @param string $linkedin
+     *
+     * @return User
+     */
+    public function setLinkedin($linkedin)
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    /**
+     * Get linkedin
+     *
+     * @return string
+     */
+    public function getLinkedin()
+    {
+        return $this->linkedin;
+    }
+
+    /**
+     * Set instagram
+     *
+     * @param string $instagram
+     *
+     * @return User
+     */
+    public function setInstagram($instagram)
+    {
+        $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    /**
+     * Get instagram
+     *
+     * @return string
+     */
+    public function getInstagram()
+    {
+        return $this->instagram;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     *
+     * @return User
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Set pinterest
+     *
+     * @param string $pinterest
+     *
+     * @return User
+     */
+    public function setPinterest($pinterest)
+    {
+        $this->pinterest = $pinterest;
+
+        return $this;
+    }
+
+    /**
+     * Get pinterest
+     *
+     * @return string
+     */
+    public function getPinterest()
+    {
+        return $this->pinterest;
+    }
+
+    /**
+     * Set youtube
+     *
+     * @param string $youtube
+     *
+     * @return User
+     */
+    public function setYoutube($youtube)
+    {
+        $this->youtube = $youtube;
+
+        return $this;
+    }
+
+    /**
+     * Get youtube
+     *
+     * @return string
+     */
+    public function getYoutube()
+    {
+        return $this->youtube;
     }
 }

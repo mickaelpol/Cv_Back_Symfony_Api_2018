@@ -13,7 +13,20 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('lastName')->add('adress')->add('phone')->add('age')->add('permis');
+        $builder->add('lastName')
+                ->add('country')
+                ->add('city')
+                ->add('adress')
+                ->add('phone')
+                ->add('age')
+                ->add('job')
+                ->add('facebook')
+                ->add('linkedin')
+                ->add('instagram')
+                ->add('twitter')
+                ->add('pinterest')
+                ->add('youtube')
+                ->add('permis');
     }/**
      * {@inheritdoc}
      */
@@ -22,6 +35,11 @@ class UserType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\User'
         ));
+    }
+
+        public function getParent()
+    {
+        return 'FOS\UserBundle\Form\Type\ProfileFormType';
     }
 
     /**

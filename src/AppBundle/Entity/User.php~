@@ -37,9 +37,23 @@ class User extends BaseUser
     private $adress;
 
     /**
-     * @var int
+     * @var string
      * 
-     * @ORM\Column(name="use_phone", type="integer", nullable=true)
+     * @ORM\Column(name="use_city", type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="use_country", type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="use_phone", type="string", length=10, nullable=true)
      */
     private $phone;
 
@@ -56,6 +70,55 @@ class User extends BaseUser
      */
     private $permis;
 
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="use_job", type="string", length=255, nullable=true)
+     */
+    private $job;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_facebook", type="string", length=255, nullable=true, unique=true)
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_linkedin", type="string", length=255, nullable=true, unique=true)
+     */
+    private $linkedin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_instagram", type="string", length=255, nullable=true, unique=true)
+     */
+    private $instagram;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_twitter", type="string", length=255, nullable=true, unique=true)
+     */
+    private $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_pinterest", type="string", length=255, nullable=true, unique=true)
+     */
+    private $pinterest;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="use_youtube", type="string", length=255, nullable=true, unique=true)
+     */
+    private $youtube;
+
 
 
 
@@ -67,5 +130,221 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set adress
+     *
+     * @param string $adress
+     *
+     * @return User
+     */
+    public function setAdress($adress)
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Get adress
+     *
+     * @return string
+     */
+    public function getAdress()
+    {
+        return $this->adress;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param integer $phone
+     *
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return integer
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set age
+     *
+     * @param integer $age
+     *
+     * @return User
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * Get age
+     *
+     * @return integer
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * Set permis
+     *
+     * @param boolean $permis
+     *
+     * @return User
+     */
+    public function setPermis($permis)
+    {
+        $this->permis = $permis;
+
+        return $this;
+    }
+
+    /**
+     * Get permis
+     *
+     * @return boolean
+     */
+    public function getPermis()
+    {
+        return $this->permis;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return User
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     *
+     * @return User
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     *
+     * @return User
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
     }
 }

@@ -5,6 +5,7 @@ imports:
     - { resource: services.yml }
     - { resource: assetic.yml }
     - { resource: fosrest.yml }
+    - { resource: "@UserBundle/Resources/config/services.yml" }
     # - { resource: vichuploader.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
