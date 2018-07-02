@@ -5,6 +5,8 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UserType extends AbstractType
 {
@@ -18,7 +20,15 @@ class UserType extends AbstractType
                 ->add('city')
                 ->add('adress')
                 ->add('phone')
-                ->add('age')
+                ->add('age', DateType::class, array(
+                    'widget' => 'single_text',
+
+                    // prevents rendering it as type="date", to avoid HTML5 date pickers
+                    'html5' => false,
+
+                    // adds a class that can be selected in JavaScript
+                    'attr' => ['class' => 'js-datepicker form-control'],
+                ))
                 ->add('job')
                 ->add('facebook')
                 ->add('linkedin')
@@ -26,8 +36,15 @@ class UserType extends AbstractType
                 ->add('twitter')
                 ->add('pinterest')
                 ->add('youtube')
+                ->add('vehicule')
+                ->add('photo', FileType::class, array(
+                    'required' => null,
+                    'data_class' => null
+                ))
                 ->add('permis');
-    }/**
+    }
+    
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

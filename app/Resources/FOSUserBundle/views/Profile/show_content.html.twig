@@ -6,6 +6,7 @@
 </div> #}
 
 
+
 {% block container %}
     <div class="container">
 
@@ -25,7 +26,7 @@
                     <ul id="accordion" class="accordion">
                         <li>
                             <div class="col col_4 iamgurdeep-pic">
-                                <img class="img-responsive iamgurdeeposahan" alt="iamgurdeeposahan" src="http://via.placeholder.com/1500x1500">
+                                <img class="img-responsive" src="{{ asset('uploads/images/profile/' ~ user.photo) }}" alt="photo de profil">
                                 <div class="edit-pic">
                                     {% if user.getUserFacebook() %}
                                         <a href="https://www.facebook.com/{{ user.getUserFacebook() }}" target="_blank" class="fa fa-facebook"></a>
@@ -52,9 +53,17 @@
                                 <div class="username">
                                     <h2>{{ user.lastname }} {{ user.username }}
                                         <small>
-                                            <i class="fa fa-map-marker"></i> {{ user.country|upper }} ({{ user.city }})</small>
+                                            {% if user.country %}
+                                                    <i class="fa fa-map-marker"></i> {{ user.country|upper }} 
+                                            {% endif %}
+                                            {% if user.city %}
+                                                ({{ user.city }})
+                                            {% endif %}
+                                        </small>
                                     </h2>
-                                    <p><i class="fa fa-briefcase"></i> {{ user.job|capitalize }}.</p>
+                                    {% if user.job %}
+                                        <p><i class="fa fa-briefcase"></i> {{ user.job|capitalize }}.</p>
+                                    {% endif %}
                                 </div>
     
                             </div>
@@ -67,42 +76,60 @@
                                 <i class="fa fa-chevron-down"></i>
                             </div>
                             <ul class="submenu">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-birthday-cake left-none"></i> 
-                                         {{ user.age }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
+                                {% if user.age %}
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-birthday-cake left-none"></i> 
+                                            {{ user.age|date('m/d/Y', "Europe/Paris") }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if user.country or user.city or user.adress %}
+                                    <li>
+                                        <a href="#">
                                         <i class="fa fa-map-marker left-none"></i> 
-                                         {{ user.country }} ({{ user.city }}) <br/>
-                                         {{ user.adress }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="mailto:gurdeepjawaddi94@gmail.com">
-                                        <i class="fa fa-envelope left-none"></i> 
-                                         {{ user.email }}
-                                    </a>
-                                </li>
+                                         {{ user.country }} {% if user.city %} ({{ user.city }}) <br> {% endif %}
+                                         {% if user.adress %} {{ user.adress }} {% endif %}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if user.email %}
+                                    <li>
+                                        <a href="mailto:{{ user.email }}">
+                                            <i class="fa fa-envelope left-none"></i> 
+                                            {{ user.email }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if user.phone %}
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-phone left-none"></i>
+                                            {% set phone = user.phone|split('', 2) %}
+                                            {% for number in phone %}
+                                                {{ number }}
+                                            {% endfor %}
+                                            
+                                        </a>
+                                    </li>
+                                {% endif %}
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-phone left-none"></i>
-                                        {% set phone = user.phone|split('', 2) %}
-                                        {% for number in phone %}
-                                             {{ number }}
-                                        {% endfor %}
-                                         
+                                        <i class="fa fa-id-card left-none"></i>
+                                        {% if user.permis == 1 %}
+                                            Permis : Oui
+                                        {% else %}
+                                            Permis : Non
+                                        {% endif %}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-car left-none"></i>
-                                         {% if user.permis == 1 %}
-                                            Permis B : Oui
+                                        {% if user.vehicule == 1 %}
+                                            Vehiculé : Oui
                                         {% else %}
-                                            Permis B : Non
+                                            Vehiculé : Non
                                         {% endif %}
                                     </a>
                                 </li>
@@ -116,55 +143,116 @@
                             <ul class="submenu">
                                 <li>
                                     <a href="#">
-                                        <span class="tags">Adobe Photoshop</span>
-                                        <span class="tags">Corel Draw</span>
-                                        <span class="tags">CSS</span>
-                                        <span class="tags">Css 3</span>
-                                        <span class="tags">Graphic Design</span>
-                                        <span class="tags">HTML</span>
-                                        <span class="tags">HTML5</span>
-                                        <span class="tags">JavaScript</span>
-                                        <span class="tags">Twitter bootstrap</span>
-                                        <span class="tags">bootstrap</span>
-                                        <span class="tags">User Interface Design</span>
-                                        <span class="tags">Wordpress</span>
+                                        {% for cat in categories %}
+                                            {% for content in cat.contents %}
+                                                <span class="tags">{{ content.title }}</span>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </a>
                                 </li>
-                                </a>
                             </ul>
                         </li>
                     </ul>
+                    {{ form_start(form) }}
+                    <button type="button" id="btnPhoto" class="center-block btn btn-primary">
+                        Modifier ma photo de profil
+                    </button>
+                    {{ form_widget(form.photo, { 'id': 'inputPhoto', 'attr' : {'class': 'photo'} } )}}
                 </div>
                 <div class="col-lg-6">
                     <h1 class="text-center">
                         Éditer votre profil
                     </h1>
                     
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <div>
-            <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-        </div>
-    {{ form_end(form) }}
-                    
-                    {# <form style="margin-top: 30px;" action="" method="POST" class="form-horizontal" role="form">
-                    
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2">
-                                <input class="form-control" type="text">
+                        <div class="row">
+                            <div class="col-lg-6">
+        
+                                {{ form_label(form.username, "Prénom")}}
+                                {{ form_widget(form.username, {'attr': {'class': 'form-control'}})}}
+        
+                                {{ form_label(form.lastName, "Nom")}}
+                                {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}})}}
+        
+                                {{ form_label(form.age, "Age")}}
+                                {{ form_widget(form.age) }}
+    
+                                {{ form_label(form.email, "Adresse email")}}
+                                {{ form_widget(form.email, {'attr': {'class': 'form-control'}})}}
+    
+                                {{ form_label(form.phone, "N° Tel")}}
+                                {{ form_widget(form.phone, {'attr': {'class': 'form-control'}})}}
+        
+                                {{ form_label(form.country, "Pay")}}
+                                {{ form_widget(form.country, {'attr': {'class': 'form-control'}})}}
+        
+                                {{ form_label(form.city, "Ville")}}
+                                {{ form_widget(form.city, {'attr': {'class': 'form-control'}})}}
+    
+                                {{ form_label(form.adress, "Adresse")}}
+                                {{ form_widget(form.adress, {'attr': {'class': 'form-control'}})}}
+    
+                                <div class="onoffswitch1">
+                                    {{ form_label(form.permis, "Permis ?" )}}
+                                    {{ form_widget(form.permis, { 'id': 'myonoffswitch1', 'attr' : {'class': 'onoffswitch1-checkbox'} } )}}
+                                    <label class="onoffswitch1-label" for="myonoffswitch1">
+                                        <span class="onoffswitch1-inner"></span>
+                                        <span class="onoffswitch1-switch"></span>
+                                    </label>
+                                </div>
+        
+        
+        
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2">
-                                <input class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="col-lg-6">
+                                
+                                {{ form_label(form.job, "Travail")}}
+                                {{ form_widget(form.job, {'attr': {'class': 'form-control'}})}}
+    
+                                <h3>Réseaux sociaux</h3>
+    
+                                {{ form_label(form.facebook, "Facebook")}}
+                                {{ form_widget(form.facebook, {'attr': {'class': 'form-control'}})}}
+    
+                                {{ form_label(form.linkedin, "Linkedin")}}
+                                {{ form_widget(form.linkedin, {'attr': {'class': 'form-control'}})}}
+    
+                                {{ form_label(form.instagram, "Instagram")}}
+                                {{ form_widget(form.instagram, {'attr': {'class': 'form-control'}})}}
+    
+                                {{ form_label(form.twitter, "Twitter")}}
+                                {{ form_widget(form.twitter, {'attr': {'class': 'form-control'}})}}
+    
+                                {{ form_label(form.pinterest, "Pinterest")}}
+                                {{ form_widget(form.pinterest, {'attr': {'class': 'form-control'}})}}
+    
+                                {{ form_label(form.youtube, "Youtube")}}
+                                {{ form_widget(form.youtube, {'attr': {'class': 'form-control'}})}}
+    
+                                <div class="onoffswitch1">
+                                    {{ form_label(form.vehicule, "Vehiculé ?" )}}
+                                    {{ form_widget(form.vehicule, { 'id': 'myonoffswitch2', 'attr' : {'class': 'onoffswitch1-checkbox'} } )}}
+                                    <label class="onoffswitch1-label" for="myonoffswitch2">
+                                        <span class="onoffswitch1-inner"></span>
+                                        <span class="onoffswitch1-switch"></span>
+                                    </label>
+                                </div>
+
                             </div>
                         </div>
 
-                    </form> #}
+                        <div class="row" style="margin-top:60px;">
+    
+                            <div class="col-lg-6">
+                                {{ form_widget(form.current_password, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}})}}
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <input class="btn btn-block btn-success fa" type="submit" value="{{ 'profile.edit.submit'|trans }} &#xf058;"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    {{ form_end(form) }}
                     
                 </div>
         </div>
@@ -174,3 +262,7 @@
         
     </div>
 {% endblock container %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/profile.js') }}"></script>
+{% endblock javascripts %}

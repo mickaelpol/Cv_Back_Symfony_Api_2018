@@ -58,9 +58,9 @@ class User extends BaseUser
     private $phone;
 
     /**
-     * @var int
-     * 
-     * @ORM\Column(name="use_age", type="integer", nullable=true)
+     * @var string
+     *
+     * @ORM\Column(name="use_age", type="date", nullable=true)
      */
     private $age;
 
@@ -69,6 +69,12 @@ class User extends BaseUser
      * @ORM\Column(name="use_permis", type="boolean", nullable=true)
      */
     private $permis;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="use_vehicule", type="boolean", nullable=true)
+     */
+    private $vehicule;
 
     /**
      * @var string
@@ -118,6 +124,30 @@ class User extends BaseUser
      * @ORM\Column(name="use_youtube", type="string", length=255, nullable=true, unique=true)
      */
     private $youtube;
+
+    /**
+     * @ORM\Column(name="use_photo", type="string", nullable=true)
+     * 
+     *
+     */
+    private $photo;
+
+    public function __toString()
+    {
+        return $this->photo;
+    }
+
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
 
 
     /**
@@ -186,11 +216,25 @@ class User extends BaseUser
         }
     }
 
+    /**
+     * Get the string of user in pinterest
+     *
+     * @return string
+     */
     public function getUserPinterest()
     {
         if($this->getPinterest()){
             $link = explode('/', $this->getPinterest());
             return $link[3];
+        }
+    }
+
+    public function getPhoneSeparate()
+    {
+        if ($this->getPhone()) {
+            $str = str_split($this->getPhone(), 2);
+            $phone = implode('/', $str);
+            return $phone;
         }
     }
 
@@ -540,5 +584,29 @@ class User extends BaseUser
     public function getYoutube()
     {
         return $this->youtube;
+    }
+
+    /**
+     * Set vehicule
+     *
+     * @param boolean $vehicule
+     *
+     * @return User
+     */
+    public function setVehicule($vehicule)
+    {
+        $this->vehicule = $vehicule;
+
+        return $this;
+    }
+
+    /**
+     * Get vehicule
+     *
+     * @return boolean
+     */
+    public function getVehicule()
+    {
+        return $this->vehicule;
     }
 }

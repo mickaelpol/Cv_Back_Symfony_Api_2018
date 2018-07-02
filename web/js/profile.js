@@ -1,4 +1,15 @@
-$(function () {
+$(document).ready(function(){
+
+    $('.js-datepicker').datetimepicker({
+        language: 'fr',
+        weekStart: 0,
+        format: 'dd/mm/yyyy',
+        startView: 'decade',
+        autoclose: true,
+        minView: "month",
+        maxView: "decade"
+    });
+    
     var Accordion = function (el, multiple) {
         this.el = el || {};
         this.multiple = multiple || false;
@@ -28,4 +39,9 @@ $(function () {
     }
 
     var accordion = new Accordion($('#accordion'), false);
+
+    $('#btnPhoto').on('click', function(){
+        $('#inputPhoto').click();
+    });
+
 });
