@@ -1,0 +1,21 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/message_reset.css') }}">
+{% endblock stylesheets %}
+
+{% block body %}
+    
+    <p class="text-center" style="margin-top: 120px;">
+        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+    </p>
+
+    <div class="loader center-block"></div>
+
+{% endblock body %}
+
+{% endblock %}

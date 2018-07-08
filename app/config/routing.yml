@@ -3,6 +3,10 @@ user:
     type:     annotation
     prefix:   /
 
+fos_user_resetting_reset:
+    path: /resetting/reset/{token}
+    defaults: { _controller: UserBundle:Resetting:reset }
+
 app_content:
     resource: "@AppBundle/Controller/ContentController.php"
     type:     annotation

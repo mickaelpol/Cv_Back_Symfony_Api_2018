@@ -1,20 +1,17 @@
 {% extends "base.html.twig" %}
 
 
-{% block stylesheets %}{% endblock %} 
+{% block stylesheets %}
+
+{% endblock %} 
 
 {% block body %}
 
 
-        {% if app.request.hasPreviousSession %}
-            {% for type, messages in app.session.flashbag.all() %}
-                {% for message in messages %}
-                    <div class="flash-{{ type }}">
-                        <p class="text-center text-info font20">{{ message }}</p>
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        {% endif %}
+
+        {% for label, flashes in app.session.flashbag.all %} {% for flash in flashes %}
+            <div class="col-lg-12 col-xs-12" id="message" data-type="{{ label }}" data-flash="{{ flash }}"></div>
+        {% endfor %} {% endfor %}
 
         <div>
             {% block fos_user_content %}
@@ -26,4 +23,5 @@
 
 
 
-{% block javascripts %}{% endblock %} 
+{% block javascripts %}
+{% endblock %} 

@@ -21,6 +21,7 @@ use AppBundle\Entity\User;
 use Symfony\Component\Filesystem\Filesystem;
 
 
+
 class ProfileController extends BaseController
 {
 
@@ -91,7 +92,7 @@ class ProfileController extends BaseController
             
             $this->addFlash(
                 'successing',
-                'Le contenu à bien été modifié'
+                'Le profil à bien été modifié'
             );
 
 
