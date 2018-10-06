@@ -17,4 +17,5 @@
 /web/bundles/
 /web/node_modules/*
 /web/uploads/*
-
+.idea/
+.idea/workspace.xml
