@@ -21,3 +21,6 @@ fos_user:
 api:
     type: rest
     resource: AppBundle\Controller\ApiController\ApiController
+
+api_login_check:
+    path: /api/login_check

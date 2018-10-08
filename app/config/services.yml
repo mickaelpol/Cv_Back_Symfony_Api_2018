@@ -37,3 +37,16 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    acme_api.event.jwt_created_listener:
+        class: UserBundle\EventListener\JWTCreatedListener
+        arguments: [ '@request_stack' ] # Symfony 2.4+
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+        class: UserBundle\EventListener\JWTDecodedListener
+        arguments: [ '@request_stack' ] # Symfony 2.4+
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_decoded, method: onJWTDecoded }
+        class: UserBundle\EventListener\JWTAuthenticatedListener
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_authenticated, method: onJWTAuthenticated }
